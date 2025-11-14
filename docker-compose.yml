@@ -1,0 +1,57 @@
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: docker/apache/Dockerfile
+    container_name: inventotrack_apache
+    restart: unless-stopped
+    ports:
+      - "8080:80"
+    volumes:
+      - ./:/var/www/html:cached
+    environment:
+      DATABASE_URL: mysql://inventotrack:secret@db:3306/inventotrack?serverVersion=8.0
+    depends_on:
+      - db
+    networks:
+      - inventotrack
+
+  db:
+    image: mysql:8.0
+    container_name: inventotrack_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: inventotrack
+      MYSQL_USER: inventotrack
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - inventotrack
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: inventotrack_phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+    ports:
+      - "8081:80"
+    depends_on:
+      - db
+    networks:
+      - inventotrack
+
+volumes:
+  db_data:
+
+networks:
+  inventotrack:
+    driver: bridge
