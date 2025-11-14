@@ -37,7 +37,15 @@
         max-width: 600px;
     }
 </style>
-
+{% if app.user %}
+<nav class="navbar">
+    <div class="navbar-brand">🏢 InventoTrack</div>
+    <div class="navbar-user">
+        <span>👋 Bonjour, {{ app.user.firstName }}</span>
+        <a href="{{ path('app_logout') }}" class="btn-logout">Déconnexion</a>
+    </div>
+</nav>
+{% endif %}
 <div class="welcome">
     <h1>🏢 {{ project_name }}</h1>
     
