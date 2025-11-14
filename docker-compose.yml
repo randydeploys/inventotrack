@@ -23,7 +23,7 @@ services:
     environment:
       MYSQL_DATABASE: inventotrack
       MYSQL_USER: inventotrack
-      MYSQL_PASSWORD: 
+      MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: root
     ports:
       - "3307:3306"
