@@ -1,0 +1,162 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion - InventoTrack{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    
+    .login-container {
+        width: 100%;
+        max-width: 420px;
+        padding: 20px;
+    }
+    
+    .login-card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    }
+    
+    .login-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .login-header h1 {
+        color: #333;
+        font-size: 2em;
+        margin-bottom: 10px;
+    }
+    
+    .login-header p {
+        color: #666;
+        font-size: 0.95em;
+    }
+    
+    .form-group {
+        margin-bottom: 20px;
+    }
+    
+    .form-group label {
+        display: block;
+        color: #333;
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+    
+    .form-group input {
+        width: 100%;
+        padding: 12px 15px;
+        border: 2px solid #e0e0e0;
+        border-radius: 8px;
+        font-size: 1em;
+        transition: border-color 0.3s;
+        box-sizing: border-box;
+    }
+    
+    .form-group input:focus {
+        outline: none;
+        border-color: #667eea;
+    }
+    
+    .error-message {
+        background: #f8d7da;
+        border: 1px solid #f5c6cb;
+        color: #721c24;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+    
+    .btn-login {
+        width: 100%;
+        padding: 14px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1em;
+        font-weight: 600;
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn-login:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-login:active {
+        transform: translateY(0);
+    }
+    
+    .login-footer {
+        text-align: center;
+        margin-top: 20px;
+        color: white;
+        font-size: 0.9em;
+    }
+</style>
+
+<div class="login-container">
+    <div class="login-card">
+        <div class="login-header">
+            <h1>🏢 InventoTrack</h1>
+            <p>Connectez-vous à votre compte</p>
+        </div>
+
+        {% if error %}
+            <div class="error-message">
+                <strong>❌ Erreur de connexion</strong><br>
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{{ path('app_login') }}">
+            <div class="form-group">
+                <label for="username">Adresse email</label>
+                <input 
+                    type="email" 
+                    id="username" 
+                    name="_username" 
+                    value="{{ last_username }}" 
+                    required 
+                    autofocus
+                    placeholder="votre.email@example.com"
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Mot de passe</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    name="_password" 
+                    required
+                    placeholder="Votre mot de passe"
+                >
+            </div>
+
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+            <button type="submit" class="btn-login">
+                Se connecter
+            </button>
+        </form>
+    </div>
+
+    <div class="login-footer">
+        <p>&copy; 2025 InventoTrack - Gestion d'inventaire</p>
+    </div>
+</div>
+{% endblock %}
