@@ -39,5 +39,4 @@ Documentation d'installation à venir...
 ## 👨‍💻 Auteur
 
 Randy Bourdon
-
-Test template PR
+Test PR template affichage
