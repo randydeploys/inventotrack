@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue - {{ project_name }}{% endblock %}
+
+{% block body %}
+<style>
+    .welcome {
+        text-align: center;
+        padding: 50px;
+        font-family: Arial, sans-serif;
+    }
+    .welcome h1 {
+        color: #333;
+        font-size: 3em;
+        margin-bottom: 20px;
+    }
+    .welcome p {
+        color: #666;
+        font-size: 1.2em;
+    }
+    .success {
+        background: #d4edda;
+        border: 1px solid #c3e6cb;
+        color: #155724;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px auto;
+        max-width: 600px;
+    }
+    .info {
+        background: #d1ecf1;
+        border: 1px solid #bee5eb;
+        color: #0c5460;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 20px auto;
+        max-width: 600px;
+    }
+</style>
+
+<div class="welcome">
+    <h1>🏢 {{ project_name }}</h1>
+    
+    <div class="success">
+        <strong>✅ Symfony + Apache fonctionnent correctement !</strong>
+        <p>L'application est prête pour le développement.</p>
+    </div>
+    
+    <div class="info">
+        <p><strong>Application de gestion d'inventaire multi-organisations</strong></p>
+        <p>📦 Gestion de matériel et mobilier sur plusieurs sites</p>
+    </div>
+    
+    <p style="margin-top: 40px;">
+        <small>Version: Symfony {{ constant('Symfony\\Component\\HttpKernel\\Kernel::VERSION') }}</small><br>
+        <small>Serveur: Apache</small>
+    </p>
+</div>
+{% endblock %}
