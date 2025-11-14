@@ -1,0 +1,185 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration - InventoTrack{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    .navbar {
+        background: rgba(0,0,0,0.2);
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar-brand {
+        color: white;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-decoration: none;
+    }
+
+    .navbar-user {
+        color: white;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .btn-logout {
+        background: rgba(255,255,255,0.2);
+        color: white;
+        padding: 8px 20px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+
+    .btn-logout:hover {
+        background: rgba(255,255,255,0.3);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 50px auto;
+        padding: 0 20px;
+    }
+
+    .card {
+        background: white;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        margin-bottom: 30px;
+    }
+
+    .card h1 {
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .card .subtitle {
+        color: #666;
+        margin-bottom: 30px;
+    }
+
+    .role-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-size: 0.9em;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .permissions {
+        list-style: none;
+        padding: 0;
+    }
+
+    .permissions li {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .permissions li:last-child {
+        border-bottom: none;
+    }
+
+    .permissions li::before {
+        content: "✓ ";
+        color: #667eea;
+        font-weight: bold;
+        margin-right: 10px;
+    }
+
+    .quick-links {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 30px;
+    }
+
+    .quick-link {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: transform 0.2s;
+    }
+
+    .quick-link:hover {
+        transform: translateY(-5px);
+    }
+
+    .quick-link h3 {
+        margin: 0 0 10px 0;
+    }
+
+    .quick-link p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 0.9em;
+    }
+</style>
+
+<nav class="navbar">
+    <a href="{{ path('app_home') }}" class="navbar-brand">🏢 InventoTrack</a>
+    <div class="navbar-user">
+        <span>👋 {{ user.fullName }}</span>
+        <a href="{{ path('app_logout') }}" class="btn-logout">Déconnexion</a>
+    </div>
+</nav>
+
+<div class="container">
+    <div class="card">
+        <h1>🛡️ Espace Administration</h1>
+        <p class="subtitle">Bienvenue dans l'interface d'administration</p>
+        
+        <span class="role-badge">👑 Administrateur</span>
+
+        <h2>Vos permissions :</h2>
+        <ul class="permissions">
+            <li>Gérer les utilisateurs de l'organisation</li>
+            <li>Configurer les paramètres de l'organisation</li>
+            <li>Gérer les sites et bâtiments</li>
+            <li>Gérer l'inventaire complet</li>
+            <li>Consulter tous les rapports</li>
+            <li>Attribuer des rôles aux utilisateurs</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2>Accès rapides</h2>
+        <div class="quick-links">
+            <a href="#" class="quick-link">
+                <h3>👥 Utilisateurs</h3>
+                <p>Gérer les comptes utilisateurs</p>
+            </a>
+            <a href="#" class="quick-link">
+                <h3>🏢 Sites</h3>
+                <p>Gérer les sites et bâtiments</p>
+            </a>
+            <a href="#" class="quick-link">
+                <h3>📦 Inventaire</h3>
+                <p>Gérer l'inventaire complet</p>
+            </a>
+            <a href="#" class="quick-link">
+                <h3>⚙️ Paramètres</h3>
+                <p>Configuration de l'organisation</p>
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %}
