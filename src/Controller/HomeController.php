@@ -10,7 +10,6 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 final class HomeController extends AbstractController
 {
     #[Route('/', name: 'app_home')]
-    #[IsGranted('ROLE_USER', message: 'Vous devez être connecté pour accéder à cette page.')]
     public function index(): Response
     {
         return $this->render('home/index.html.twig', [
