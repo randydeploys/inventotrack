@@ -10,7 +10,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <title>Connexion – InventoTrack</title>
+    <title>Super Admin – Connexion</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/favicon/favicon.ico') }}" />
@@ -31,17 +31,45 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/rtl/theme-default.css') }}"/>
     <link rel="stylesheet" href="{{ asset('assets/css/demo.css') }}"/>
 
-    <!-- Vendors CSS -->
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/node-waves/node-waves.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/typeahead-js/typeahead.css') }}"/>
-    <link rel="stylesheet" href="{{ asset('assets/vendor/libs/@form-validation/form-validation.css') }}"/>
-
     <!-- Page CSS -->
     <link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/page-auth.css') }}"/>
 
     <script src="{{ asset('assets/vendor/js/helpers.js') }}"></script>
     <script src="{{ asset('assets/js/config.js') }}"></script>
+
+    <style>
+        /* ====== THEME SUPERADMIN RED ====== */
+        .btn-superadmin {
+            background: linear-gradient(72deg, #dc2626, #f87171);
+            border: none;
+            color: white !important;
+            font-weight: 600;
+        }
+        .btn-superadmin:hover {
+            box-shadow: 0 4px 18px rgba(220, 38, 38, 0.55);
+        }
+
+        .superadmin-badge {
+            background: linear-gradient(72deg, #dc2626, #f87171);
+            padding: 6px 14px;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .app-brand-text {
+            color: #dc2626 !important;
+            font-weight: 700 !important;
+        }
+
+        .superadmin-logo svg path:first-child {
+            fill: #dc2626 !important;
+        }
+        .superadmin-logo svg path:last-child {
+            fill: #dc2626 !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -54,17 +82,25 @@
                 <div class="card-body">
 
                     <!-- Logo -->
-                    <div class="app-brand justify-content-center mb-6">
+                    <div class="app-brand justify-content-center mb-4">
                         <a href="#" class="app-brand-link">
-                            <span class="app-brand-logo demo">
+                            <span class="app-brand-logo superadmin-logo">
                                 {% include 'components/logo_inventotrack.html.twig' %}
                             </span>
-                            <span class="app-brand-text demo fw-bold text-heading ms-2">InventoTrack</span>
+                            <span class="app-brand-text ms-2">Platform Admin</span>
                         </a>
                     </div>
 
-                    <h4 class="mb-1 text-center">Bienvenue 👋</h4>
-                    <p class="mb-6 text-center">Connectez-vous à votre espace InventoTrack</p>
+                    <!-- Badge -->
+                    <div class="text-center mb-3">
+                        <span class="superadmin-badge">
+                            <i class="ti ti-crown me-1"></i>
+                            Super Administrator
+                        </span>
+                    </div>
+
+                    <h4 class="mb-1 text-center">Accès plateforme</h4>
+                    <p class="mb-4 text-center">Connexion réservée aux Super Administrateurs</p>
 
                     {% if error %}
                         <div class="alert alert-danger">
@@ -73,21 +109,22 @@
                         </div>
                     {% endif %}
 
-                    <form method="post" class="mb-4">
+                    <form method="post" class="mb-4" action="{{ path('superadmin_login') }}">
+
                         <!-- Email -->
-                        <div class="mb-6">
+                        <div class="mb-4">
                             <label for="email" class="form-label">Adresse e-mail</label>
                             <input type="email"
                                    class="form-control"
                                    id="email"
                                    name="_username"
                                    value="{{ last_username }}"
-                                   placeholder="email@exemple.com"
+                                   placeholder="superadmin@platform.com"
                                    required autofocus>
                         </div>
 
                         <!-- Password -->
-                        <div class="mb-6 form-password-toggle">
+                        <div class="mb-4 form-password-toggle">
                             <label for="password" class="form-label">Mot de passe</label>
                             <div class="input-group input-group-merge">
                                 <input type="password"
@@ -102,15 +139,14 @@
 
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-                        <!-- Submit -->
-                        <button class="btn btn-primary d-grid w-100" type="submit">
-                            <i class="ti ti-login me-2"></i>
+                        <button class="btn btn-superadmin d-grid w-100" type="submit">
+                            <i class="ti ti-lock-open me-2"></i>
                             Se connecter
                         </button>
                     </form>
 
                     <p class="text-center text-muted mt-4">
-                        © {{ "now"|date("Y") }} InventoTrack — Gestion d'inventaire
+                        © {{ "now"|date("Y") }} InventoTrack — Plateforme SuperAdmin
                     </p>
                 </div>
             </div>
@@ -126,16 +162,7 @@
 <script src="{{ asset('assets/vendor/js/bootstrap.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/node-waves/node-waves.js') }}"></script>
 <script src="{{ asset('assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/typeahead-js/typeahead.js') }}"></script>
 <script src="{{ asset('assets/vendor/js/menu.js') }}"></script>
-
-<!-- Vendors JS -->
-<script src="{{ asset('assets/vendor/libs/@form-validation/popular.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/@form-validation/bootstrap5.js') }}"></script>
-<script src="{{ asset('assets/vendor/libs/@form-validation/auto-focus.js') }}"></script>
-
-<!-- Page JS -->
-<script src="{{ asset('assets/js/pages-auth.js') }}"></script>
 
 </body>
 </html>

@@ -24,6 +24,29 @@ class SecurityController extends AbstractController
         ]);
     }
 
+    #[Route('/superadmin/login', name: 'superadmin_login')]
+    public function login_superadmin(AuthenticationUtils $authenticationUtils): Response
+    {
+        // Si déjà connecté ET superadmin → dashboard superadmin
+        if ($this->getUser() && $this->isGranted('ROLE_SUPER_ADMIN')) {
+            return $this->redirectToRoute('superadmin_index');
+        }
+
+        // Sinon, empêche l’accès aux non-superadmin déjà connectés
+        if ($this->getUser() && !$this->isGranted('ROLE_SUPER_ADMIN')) {
+            return $this->redirectToRoute('app_logout');
+        }
+
+        // Récupère erreur + last_username
+        $error = $authenticationUtils->getLastAuthenticationError();
+        $lastUsername = $authenticationUtils->getLastUsername();
+
+        return $this->render('security/superadmin_login.html.twig', [
+            'last_username' => $lastUsername,
+            'error'         => $error,
+        ]);
+    }
+
     #[Route(path: '/logout', name: 'app_logout')]
     public function logout(): void
     {

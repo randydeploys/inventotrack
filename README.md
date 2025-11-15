@@ -54,6 +54,10 @@ docker-compose build
 # Démarrer les conteneurs
 docker-compose up -d
 
+# Voir l'état des conteneurs
+docker-compose ps
+
+
 # Installer les dépendances Symfony
 docker-compose exec apache composer install
 
@@ -111,6 +115,30 @@ inventotrack/
 ├── config/             # Configuration Symfony
 └── migrations/         # Migrations Doctrine
 ```
+
+## 🎨 Installation du thème Vuexy
+
+⚠️ **Important** : Vuexy est un thème payant non inclus dans ce repository.
+
+### Étapes :
+
+1. **Acheter Vuexy** sur [ThemeForest](https://themeforest.net/item/vuexy-vuejs-html-laravel-admin-dashboard-template/23328599) (~$30)
+
+2. **Télécharger** le package complet Vuexy
+
+3. **Extraire** le dossier `html/assets/` vers `public/assets/`
+```bash
+   # Structure attendue :
+   public/assets/
+   ├── css/
+   ├── js/
+   ├── vendor/
+   ├── img/
+   └── ...
+```
+
+4. **Vérifier** que l'application fonctionne : http://localhost:8080
+
 
 ## 📝 Licence
 
