@@ -154,9 +154,9 @@ Randy Bourdon
   - [x] Setup Git + GitHub
   - [x] Setup Docker (Apache)
   - [x] Setup Symfony
-  - [ ] Configuration BDD
-  - [ ] Entité User
-  - [ ] Authentification
+  - [x] Configuration BDD
+  - [x] Entité User
+  - [x] Authentification
 - [ ] Phase 2 : Organisations
 - [ ] Phase 3 : Structure physique
 - [ ] Phase 4 : Inventaire
