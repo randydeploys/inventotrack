@@ -5,9 +5,10 @@ namespace App\Controller\Superadmin;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/superadmin', name: 'superadmin_')]
-// #[IsGranted('ROLE_SUPER_ADMIN')]
+#[IsGranted('ROLE_SUPER_ADMIN')]
 final class SuperAdminController extends AbstractController
 {
     #[Route('/', name: 'index')]
