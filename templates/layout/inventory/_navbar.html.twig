@@ -1,0 +1,97 @@
+ <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme" id="layout-navbar">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+                        <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+                            <i class="ti ti-menu-2 ti-md"></i>
+                        </a>
+                    </div>
+
+                    <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+                       
+
+                        <ul class="navbar-nav flex-row align-items-center ms-auto">
+                            <!-- Notifications -->
+                            <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <span class="position-relative">
+                                        <i class="ti ti-bell ti-md"></i>
+                                        <span class="badge rounded-pill bg-danger badge-dot badge-notifications border"></span>
+                                    </span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end p-0">
+                                    <li class="dropdown-menu-header border-bottom">
+                                        <div class="dropdown-header d-flex align-items-center py-3">
+                                            <h6 class="mb-0 me-auto">Notifications</h6>
+                                            <div class="d-flex align-items-center">
+                                                <span class="badge rounded-pill bg-label-primary">0 nouvelles</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="dropdown-menu-footer border-top p-3">
+                                        <a href="#" class="btn btn-primary d-grid w-100">Voir toutes</a>
+                                    </li>
+                                </ul>
+                            </li>
+
+                            {% if app.user %}
+
+                            <!-- User -->
+                            <li class="nav-item navbar-dropdown dropdown-user dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow p-0" href="javascript:void(0);" data-bs-toggle="dropdown">
+                                    <div class="avatar avatar-online">
+                                        <span class="avatar-initial rounded-circle bg-label-primary">
+                                            {# {{ app.user.firstName|slice(0, 1)|upper }}{{ app.user.lastName|slice(0, 1)|upper }} #}
+                                        </span>
+                                    </div>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end mt-3 py-2">
+                                    <li>
+                                        <a class="dropdown-item pb-2 mb-1" href="#">
+                                            <div class="d-flex align-items-center">
+                                                <div class="flex-shrink-0 me-2 pe-1">
+                                                    <div class="avatar avatar-online">
+                                                        <span class="avatar-initial rounded-circle bg-label-primary">
+                                                            {# {{ app.user.firstName|slice(0, 1)|upper }}{{ app.user.lastName|slice(0, 1)|upper }} #}
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    {# <h6 class="mb-0">{{ app.user.fullName }}</h6>
+                                                    <small class="text-muted">
+                                                        {% if is_granted('ROLE_SUPER_ADMIN') %}Super Admin
+                                                        {% elseif is_granted('ROLE_ADMIN') %}Administrateur
+                                                        {% elseif is_granted('ROLE_MANAGER') %}Gestionnaire
+                                                        {% elseif is_granted('ROLE_EMPLOYEE') %}Employé
+                                                        {% endif %}
+                                                    </small> #}
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                    <li><div class="dropdown-divider my-1"></div></li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="ti ti-user me-3 ti-md"></i><span class="align-middle">Mon Profil</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="ti ti-settings me-3 ti-md"></i><span class="align-middle">Paramètres</span>
+                                        </a>
+                                    </li>
+                                    <li><div class="dropdown-divider my-1"></div></li>
+                                    <li>
+                                        <a class="dropdown-item" href="{{ path('app_logout') }}">
+                                            <i class="ti ti-logout me-3 ti-md"></i><span class="align-middle">Déconnexion</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            {% else %}
+                            
+                                <a class="btn btn-primary" href="{{ path('app_login') }}">Se connecter</a>
+                            
+
+                            {% endif %}
+                        </ul>
+                    </div>
+                </nav>

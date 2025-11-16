@@ -1,0 +1,178 @@
+            <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
+                <div class="app-brand demo">
+                    <a href="{{ path('app_home') }}" class="app-brand-link">
+                        <span class="app-brand-logo demo">
+                            <svg width="32" height="22" viewBox="0 0 32 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M0.00172773 0V6.85398C0.00172773 6.85398 -0.133178 9.01207 1.98092 10.8388L13.6912 21.9964L19.7809 21.9181L18.8042 9.88248L16.4951 7.17289L9.23799 0H0.00172773Z" fill="#667eea" />
+                                <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M7.69824 16.4364L12.5199 3.23696L16.5541 7.25596L7.69824 16.4364Z" fill="#161616" />
+                                <path opacity="0.06" fill-rule="evenodd" clip-rule="evenodd" d="M8.07751 15.9175L13.9419 4.63989L16.5849 7.28475L8.07751 15.9175Z" fill="#161616" />
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M7.77295 16.3566L23.6563 0H32V6.88383C32 6.88383 31.8262 9.17836 30.6591 10.4057L19.7824 22H13.6938L7.77295 16.3566Z" fill="#764ba2" />
+                            </svg>
+                        </span>
+                        <span class="app-brand-text demo menu-text fw-bold ms-2">InventoTrack</span>
+                    </a>
+                    <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto">
+                        <i class="ti menu-toggle-icon d-none d-xl-block align-middle"></i>
+                        <i class="ti ti-x d-block d-xl-none ti-md align-middle"></i>
+                    </a>
+                </div>
+
+                <div class="menu-inner-shadow"></div>
+
+                <ul class="menu-inner py-1">
+                    <!-- Dashboard -->
+                    <li class="menu-item {{ app.request.get('_route') == 'app_home' ? 'active' : '' }}">
+                        <a href="{{ path('app_home') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                            <div>Accueil</div>
+                        </a>
+                    </li>
+                     <li class="menu-item {{ app.request.get('_route') == 'app_login' ? 'active' : '' }}">
+                        <a href="{{ path('app_login') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-login"></i>
+                            <div>Connexion</div>
+                        </a>
+                    </li>
+
+                    <!-- Employee Section -->
+                    {% if is_granted('ROLE_EMPLOYEE') %}
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Consultation</span></li>
+                    
+                    <li class="menu-item {{ app.request.get('_route') == 'app_employee' ? 'active' : '' }}">
+                        <a href="{{ path('app_employee') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-eye"></i>
+                            <div>Espace Employé</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-search"></i>
+                            <div>Recherche</div>
+                            <span class="badge bg-label-primary ms-auto rounded-pill">Bientôt</span>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    <!-- Manager Section -->
+                    {% if is_granted('ROLE_MANAGER') %}
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Gestion</span></li>
+                    
+                    <li class="menu-item {{ app.request.get('_route') == 'app_manager' ? 'active' : '' }}">
+                        <a href="{{ path('app_manager') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-briefcase"></i>
+                            <div>Espace Manager</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-building"></i>
+                            <div>Sites</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div>Liste des sites</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div>Bâtiments</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div>Salles</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon tf-icons ti ti-box"></i>
+                            <div>Inventaire</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div>Liste des objets</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div>Ajouter un objet</div>
+                                </a>
+                            </li>
+                            <li class="menu-item">
+                                <a href="#" class="menu-link">
+                                    <div>Catégories</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-exchange"></i>
+                            <div>Mouvements</div>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    <!-- Admin Section -->
+                    {% if is_granted('ROLE_ADMIN') %}
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Administration</span></li>
+                    
+                    <li class="menu-item {{ app.request.get('_route') == 'app_admin' ? 'active' : '' }}">
+                        <a href="{{ path('app_admin') }}" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-shield-check"></i>
+                            <div>Espace Admin</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-users"></i>
+                            <div>Utilisateurs</div>
+                            <span class="badge bg-label-warning ms-auto rounded-pill">Bientôt</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-building-community"></i>
+                            <div>Organisation</div>
+                            <span class="badge bg-label-warning ms-auto rounded-pill">Bientôt</span>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-settings"></i>
+                            <div>Paramètres</div>
+                        </a>
+                    </li>
+                    {% endif %}
+
+                    <!-- Reports -->
+                    {% if is_granted('ROLE_MANAGER') %}
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Rapports</span></li>
+                    
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-chart-bar"></i>
+                            <div>Statistiques</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="#" class="menu-link">
+                            <i class="menu-icon tf-icons ti ti-file-export"></i>
+                            <div>Exports</div>
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </aside>
